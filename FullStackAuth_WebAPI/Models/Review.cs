@@ -13,8 +13,6 @@ namespace FullStackAuth_WebAPI.Models
         public int Rating { get; set; }
         [Required]
         public string Comment { get; set; }
-        [Required]
-        public DateOnly ReviewDate { get; set; }
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }

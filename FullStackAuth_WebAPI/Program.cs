@@ -35,11 +35,12 @@ namespace FullStackAuth_WebAPI
             builder.Services.AddSwaggerGen();
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseMySQL(connectionString, b => b.MigrationsAssembly(typeof
                         (ApplicationDbContext).Assembly.FullName)));
+
 
             var app = builder.Build();
 

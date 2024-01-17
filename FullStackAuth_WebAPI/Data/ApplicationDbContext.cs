@@ -11,6 +11,8 @@ namespace FullStackAuth_WebAPI.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
 
 
         public ApplicationDbContext(DbContextOptions options)
