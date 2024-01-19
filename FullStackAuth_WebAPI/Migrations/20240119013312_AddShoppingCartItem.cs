@@ -7,7 +7,7 @@
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIsAdminToUser : Migration
+    public partial class AddShoppingCartItem : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,32 +15,20 @@ namespace FullStackAuth_WebAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "5981504e-1f3b-4a64-aa84-80cf9d76cdc1");
+                keyValue: "6fe7cb3e-d5bf-4591-a204-06ef8b639696");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "bffe10e7-a0cd-4b4a-b449-7232106cb1db");
-
-            migrationBuilder.RenameColumn(
-                name: "StockQuantity",
-                table: "Products",
-                newName: "Quantity");
-
-            migrationBuilder.AddColumn<bool>(
-                name: "IsAdmin",
-                table: "AspNetUsers",
-                type: "tinyint(1)",
-                nullable: false,
-                defaultValue: false);
+                keyValue: "a113c3a3-173d-42f1-a8b5-130a772ea36f");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2fc80a80-29e0-4373-94e8-40ad6d99f46a", null, "User", "USER" },
-                    { "99d4c78e-83c5-4d04-91bf-06072f72773e", null, "Admin", "ADMIN" }
+                    { "00b010ed-f880-49e0-a3db-e51fc14633a5", null, "Admin", "ADMIN" },
+                    { "cba26eaf-6d74-4699-845e-f6a464632509", null, "User", "USER" }
                 });
         }
 
@@ -50,29 +38,20 @@ namespace FullStackAuth_WebAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "2fc80a80-29e0-4373-94e8-40ad6d99f46a");
+                keyValue: "00b010ed-f880-49e0-a3db-e51fc14633a5");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "99d4c78e-83c5-4d04-91bf-06072f72773e");
-
-            migrationBuilder.DropColumn(
-                name: "IsAdmin",
-                table: "AspNetUsers");
-
-            migrationBuilder.RenameColumn(
-                name: "Quantity",
-                table: "Products",
-                newName: "StockQuantity");
+                keyValue: "cba26eaf-6d74-4699-845e-f6a464632509");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5981504e-1f3b-4a64-aa84-80cf9d76cdc1", null, "Admin", "ADMIN" },
-                    { "bffe10e7-a0cd-4b4a-b449-7232106cb1db", null, "User", "USER" }
+                    { "6fe7cb3e-d5bf-4591-a204-06ef8b639696", null, "Admin", "ADMIN" },
+                    { "a113c3a3-173d-42f1-a8b5-130a772ea36f", null, "User", "USER" }
                 });
         }
     }

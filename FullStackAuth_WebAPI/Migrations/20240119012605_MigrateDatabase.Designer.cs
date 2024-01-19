@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240117032001_Corrected")]
-    partial class Corrected
+    [Migration("20240119012605_MigrateDatabase")]
+    partial class MigrateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,22 +142,19 @@ namespace FullStackAuth_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Comment")
+                    b.Property<double>("Rating")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -263,13 +260,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bd9709e8-2767-4f5f-a8d5-e76ea110a219",
+                            Id = "96cb0036-6a5c-4028-982e-373e664b8de1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ba7adb5d-9ca9-405d-9af0-79589aca7f42",
+                            Id = "de4775a9-8c53-4fc6-8525-ed2335f220a2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -406,13 +403,11 @@ namespace FullStackAuth_WebAPI.Migrations
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Review", b =>
                 {
-                    b.HasOne("FullStackAuth_WebAPI.Models.Product", "Product")
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Product");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240112023301_AddedOrderClass")]
-    partial class AddedOrderClass
+    [Migration("20240119013312_AddShoppingCartItem")]
+    partial class AddShoppingCartItem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,12 +128,39 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("StockQuantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.User", b =>
@@ -157,6 +184,9 @@ namespace FullStackAuth_WebAPI.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
@@ -234,13 +264,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bffe10e7-a0cd-4b4a-b449-7232106cb1db",
+                            Id = "cba26eaf-6d74-4699-845e-f6a464632509",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "5981504e-1f3b-4a64-aa84-80cf9d76cdc1",
+                            Id = "00b010ed-f880-49e0-a3db-e51fc14633a5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -367,6 +397,15 @@ namespace FullStackAuth_WebAPI.Migrations
                 });
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Order", b =>
+                {
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Review", b =>
                 {
                     b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
                         .WithMany()

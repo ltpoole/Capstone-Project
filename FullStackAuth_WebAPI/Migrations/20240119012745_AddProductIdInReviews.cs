@@ -7,7 +7,7 @@
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class CorrectingReviewModel : Migration
+    public partial class AddProductIdInReviews : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,20 +15,26 @@ namespace FullStackAuth_WebAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "423824d3-3ee7-4505-aef2-98ce2e34740e");
+                keyValue: "96cb0036-6a5c-4028-982e-373e664b8de1");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "5196a9d7-0179-4a83-a9c8-de5ea52fdfee");
+                keyValue: "de4775a9-8c53-4fc6-8525-ed2335f220a2");
+
+            migrationBuilder.AddColumn<string>(
+                name: "ProductId",
+                table: "Reviews",
+                type: "longtext",
+                nullable: false);
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f40d8fb-d240-4446-a7c8-1b7cc594b463", null, "User", "USER" },
-                    { "a067ea1c-81d5-40d2-9b9a-2db672289597", null, "Admin", "ADMIN" }
+                    { "6fe7cb3e-d5bf-4591-a204-06ef8b639696", null, "Admin", "ADMIN" },
+                    { "a113c3a3-173d-42f1-a8b5-130a772ea36f", null, "User", "USER" }
                 });
         }
 
@@ -38,20 +44,24 @@ namespace FullStackAuth_WebAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "0f40d8fb-d240-4446-a7c8-1b7cc594b463");
+                keyValue: "6fe7cb3e-d5bf-4591-a204-06ef8b639696");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a067ea1c-81d5-40d2-9b9a-2db672289597");
+                keyValue: "a113c3a3-173d-42f1-a8b5-130a772ea36f");
+
+            migrationBuilder.DropColumn(
+                name: "ProductId",
+                table: "Reviews");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "423824d3-3ee7-4505-aef2-98ce2e34740e", null, "Admin", "ADMIN" },
-                    { "5196a9d7-0179-4a83-a9c8-de5ea52fdfee", null, "User", "USER" }
+                    { "96cb0036-6a5c-4028-982e-373e664b8de1", null, "User", "USER" },
+                    { "de4775a9-8c53-4fc6-8525-ed2335f220a2", null, "Admin", "ADMIN" }
                 });
         }
     }

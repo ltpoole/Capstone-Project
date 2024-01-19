@@ -8,7 +8,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedAddressClass : Migration
+    public partial class UpdateShoppingCartItem : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,31 +16,28 @@ namespace FullStackAuth_WebAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "0348983d-1d40-48c7-99cb-fb87bd44cf98");
+                keyValue: "00b010ed-f880-49e0-a3db-e51fc14633a5");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a63c9070-fc9a-4210-90a0-9662f9a6da0a");
+                keyValue: "cba26eaf-6d74-4699-845e-f6a464632509");
 
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "ShoppingCartItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Street = table.Column<string>(type: "longtext", nullable: false),
-                    City = table.Column<string>(type: "longtext", nullable: false),
-                    State = table.Column<string>(type: "longtext", nullable: false),
-                    ZipCode = table.Column<string>(type: "longtext", nullable: false),
-                    Country = table.Column<string>(type: "longtext", nullable: false),
+                    ProductId = table.Column<string>(type: "longtext", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_AspNetUsers_UserId",
+                        name: "FK_ShoppingCartItems_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
@@ -52,13 +49,13 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "890f4f59-5c23-42ba-bf4d-94c036137aa8", null, "User", "USER" },
-                    { "f055e1ce-61bb-49be-9214-861c8efbefdf", null, "Admin", "ADMIN" }
+                    { "36807c7c-4861-4421-8b60-3508fcf2d31c", null, "User", "USER" },
+                    { "c4949305-dfd2-4455-a8f4-6a8500da0dc0", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_UserId",
-                table: "Addresses",
+                name: "IX_ShoppingCartItems_UserId",
+                table: "ShoppingCartItems",
                 column: "UserId");
         }
 
@@ -66,25 +63,25 @@ namespace FullStackAuth_WebAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "ShoppingCartItems");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "890f4f59-5c23-42ba-bf4d-94c036137aa8");
+                keyValue: "36807c7c-4861-4421-8b60-3508fcf2d31c");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "f055e1ce-61bb-49be-9214-861c8efbefdf");
+                keyValue: "c4949305-dfd2-4455-a8f4-6a8500da0dc0");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0348983d-1d40-48c7-99cb-fb87bd44cf98", null, "Admin", "ADMIN" },
-                    { "a63c9070-fc9a-4210-90a0-9662f9a6da0a", null, "User", "USER" }
+                    { "00b010ed-f880-49e0-a3db-e51fc14633a5", null, "Admin", "ADMIN" },
+                    { "cba26eaf-6d74-4699-845e-f6a464632509", null, "User", "USER" }
                 });
         }
     }
