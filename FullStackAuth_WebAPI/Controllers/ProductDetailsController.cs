@@ -17,7 +17,7 @@ namespace FullStackAuth_WebAPI.Controllers
             _context = context; 
         }
 
-        // GET api/<ProductDetailsController>/5
+        // GET api/productdetails/1
         [HttpGet("{productId}")]
         public IActionResult GetProductDetails(string productId)
         {

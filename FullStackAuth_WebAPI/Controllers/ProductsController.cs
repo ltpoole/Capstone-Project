@@ -2,6 +2,7 @@
 using FullStackAuth_WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,14 +10,14 @@ namespace FullStackAuth_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin")]
+
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
         public ProductsController(ApplicationDbContext context)
-        { 
-            _context = context; 
+        {
+            _context = context;
         }
 
         // GET: api/products
@@ -31,12 +32,12 @@ namespace FullStackAuth_WebAPI.Controllers
             }
             catch (Exception ex)
             {
-            return StatusCode(500, ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
         // GET api/products/5
-        [HttpGet("{productId}")]
+        [HttpGet("{productId}"), Authorize]
         public IActionResult GetProductById(int? productId)
         {
             if (productId == null)
@@ -44,7 +45,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 return NotFound();
             }
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
-            
+
             if (product == null)
             {
                 return NotFound();
