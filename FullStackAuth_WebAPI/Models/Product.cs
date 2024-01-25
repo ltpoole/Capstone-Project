@@ -17,5 +17,6 @@ namespace FullStackAuth_WebAPI.Models
         [Required]
         public int Quantity { get; set; }
 
+
     }
 }

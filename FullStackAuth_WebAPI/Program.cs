@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace FullStackAuth_WebAPI
@@ -42,7 +43,16 @@ namespace FullStackAuth_WebAPI
                         (ApplicationDbContext).Assembly.FullName)));
 
 
+
+
             var app = builder.Build();
+
+            var env = builder.Environment;
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
+                RequestPath = "/Images"
+            });
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
