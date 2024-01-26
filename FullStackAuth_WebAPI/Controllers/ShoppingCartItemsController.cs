@@ -18,84 +18,63 @@ namespace FullStackAuth_WebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/shoppingcart
+        // GET: api/shoppingcartitems
         [HttpGet("{userId}")]
-        public IActionResult GetShoppingCartItems(string userId)
+        public IActionResult GetCart(string userId) 
         {
-            var shoppingCartItems = _context.ShoppingCartItems.Where(s => s.UserId == userId).ToList();
+            var cartItems = _context.ShoppingCartItems
+                .Where(c => c.UserId == userId)
+                .ToList();
 
-            return Ok(shoppingCartItems);
-            
+            return StatusCode(201, cartItems);
         }
+
 
         // POST api/shoppingcartitems
-        [HttpPost("{userId}/{productId}")]
-        public IActionResult AddToCart(string userId, string productId, [FromBody] int quantity)
+        [HttpPost]
+        public async Task<IActionResult> AddToCart([FromBody] ShoppingCartItem item)
         {
-            if (quantity <= 0)
-            {
-                return BadRequest("Quantity should be greater than 0.");
-            }
+            _context.ShoppingCartItems.Add(item);
+            await _context.SaveChangesAsync();
 
-            var existingItem = _context.ShoppingCartItems.FirstOrDefault(e => e.UserId == userId && e.ProductId == productId);
-            if (existingItem != null)
-            {
-                existingItem.Quantity += quantity;
-            }
-            else
-            {
-                var newItem = new ShoppingCartItem
-                {
-                    ProductId = productId,
-                    Quantity = quantity
-                };
-
-                _context.ShoppingCartItems.Add(newItem);
-            }
-
-            _context.SaveChanges();
-            return Ok("Product added to the shopping cart");
+            return StatusCode(201, item);
         }
 
-        // PUT api/<ShoppingCartItemsController>/5
-        [HttpPut("{userId}/{productId}")]
-        public IActionResult AdjustQuantity(string userId, string productId, [FromBody] int quantity)
+
+        // PUT api/shoppingcartitems/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateQuantity(int id, [FromBody] int newQuantity)
         {
-            if (quantity <= 0)
+            var item = await _context.ShoppingCartItems.FindAsync(id);
+
+            if (item == null)
             {
-                return BadRequest("Quantity should be greater than 0.");
+                return NotFound();
             }
 
-            var itemToAdjust = _context.ShoppingCartItems
-                .FirstOrDefault(i => i.UserId == userId && i.ProductId == productId);
+            item.Quantity = newQuantity;
+            await _context.SaveChangesAsync();
 
-            if (itemToAdjust == null)
-            {
-                return NotFound("Product not found in the shopping cart.");
-            }
-
-            itemToAdjust.Quantity = quantity;
-            _context.SaveChanges();
-
-            return Ok("Quantity adjusted in the shopping cart.");
+            return StatusCode(201, newQuantity);
         }
+    
 
-        // DELETE api/<ShoppingCartItemsController>/5
-        [HttpDelete("{userId}/{productId}")]
-        public IActionResult RemoveFromCart(string userId, string productId)
+        // DELETE api/shoppingcartitems/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveFromCart(int id)
         {
-            var itemToRemove = _context.ShoppingCartItems
-                .FirstOrDefault(i => i.UserId == userId && i.ProductId == productId);
-        
-            if (itemToRemove == null)
+            var item = await _context.ShoppingCartItems.FindAsync(id);
+
+            if (item == null)
             {
-                return NotFound("Product not found in the shopping cart.");
+                return NotFound();
             }
 
-            _context.ShoppingCartItems.Remove(itemToRemove);
-            _context.SaveChanges();
+            _context.ShoppingCartItems.Remove(item);
+            await _context.SaveChangesAsync();
 
-            return Ok("Product removed from the shopping cart.");
+            return Ok();
         }
+       
     }
 }
