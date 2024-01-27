@@ -6,10 +6,13 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage/AdminDashboardPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+//import ProductItem from "./components/ProductItem/ProductItem";
+//import ProductList from "./components/ProductList/ProductList";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -24,6 +27,14 @@ function App() {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminDashboardPage />
             </PrivateRoute>
           }
         />
