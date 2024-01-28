@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ProductList from "../../components/ProductList/ProductList";
 import axios from "axios";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 const AdminDashboardPage = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +20,7 @@ const AdminDashboardPage = () => {
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      <ProductList products={products} />
+      <InventoryList products={products} />
     </div>
   );
 };

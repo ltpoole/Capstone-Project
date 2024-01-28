@@ -11,8 +11,6 @@ import AdminDashboardPage from "./pages/AdminDashboardPage/AdminDashboardPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import ProductItem from "./components/ProductItem/ProductItem";
-import ProductList from "./components/ProductList/ProductList";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
