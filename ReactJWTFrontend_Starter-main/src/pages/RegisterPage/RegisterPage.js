@@ -10,6 +10,7 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    isAdmin: false,
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     registerUser,
@@ -19,6 +20,15 @@ const RegisterPage = () => {
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
+        <label>
+          Register as an Admin
+          <input
+            type="checkbox"
+            name="isAdmin"
+            checked={formData.isAdmin}
+            onChange={handleInputChange}
+          />
+        </label>
         <label>
           Username:{" "}
           <input

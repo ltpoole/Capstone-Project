@@ -15,6 +15,7 @@ function setUserObject(user) {
     userName: user.userName,
     id: user.id,
     email: user.email,
+    isAdmin: user.isAdmin,
   };
 }
 
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         firstName: registerData.firstName,
         lastName: registerData.lastName,
+        isAdmin: registerData.isAdmin,
       };
       let response = await axios.post(`${BASE_URL}`, finalData);
       if (response.status === 201) {
@@ -70,6 +72,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const adminUser = (loginData) => {
+    if (user.isAdmin === true) {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
+  };
+
   const logoutUser = () => {
     if (user) {
       localStorage.removeItem("token");
@@ -86,6 +96,7 @@ export const AuthProvider = ({ children }) => {
     logoutUser,
     registerUser,
     isServerError,
+    adminUser,
   };
 
   return (

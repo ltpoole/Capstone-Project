@@ -23,6 +23,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <img src="kgmlogo.jpeg" alt="Knit Girl Magic logo" />
       <h1>Latest YouTube Episode</h1>
       {latestVideo && (
         <div>
