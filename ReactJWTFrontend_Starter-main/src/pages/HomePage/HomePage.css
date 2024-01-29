@@ -1,0 +1,23 @@
+.image {
+  display: grid;
+  justify-items: center;
+  padding: 1rem 2rem;
+  margin: 6rem;
+  color: orangered;
+  text-align: center;
+}
+
+.info {
+  margin: 4rem;
+  padding: 2rem;
+}
+
+.social-icons img {
+  width: 40px;
+  height: auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-evenly;
+}

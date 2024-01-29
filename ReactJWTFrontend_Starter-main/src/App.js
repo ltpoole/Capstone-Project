@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage/AdminDashboardPage";
+import ProductPage from "./pages/ProductPage/ProductPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -31,6 +33,8 @@ function App() {
         <Route path="/admin" element={<AdminDashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/productDetails/:id/" element={<ProductDetailsPage />} />
       </Routes>
       <Footer />
     </div>
