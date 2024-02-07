@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,8 @@ namespace FullStackAuth_WebAPI.Managers
             {
                 new Claim("userName", _user.UserName),
                 new Claim("email", _user.Email),
-                new Claim("id", _user.Id)
+                new Claim("id", _user.Id),
+                new Claim("isAdmin", _user.IsAdmin.ToString()),
             };
 
             var roles = await _userManager.GetRolesAsync(_user);

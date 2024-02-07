@@ -15,7 +15,7 @@ namespace FullStackAuth_WebAPI.Models
         [Required]
         public decimal Price { get; set; }
         [Required]
-        public int Quantity { get; set; }
+        public int StockQuantity { get; set; }
 
 
     }

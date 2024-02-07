@@ -20,12 +20,13 @@ const ProductPage = () => {
 
   return (
     <div>
-      <h2>Charity's Products</h2>
+      <h2 style={{ color: "orangered" }}>Charity's Products</h2>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>
-            <Link to={`/productDetails/${product.id}`}>{product.name}</Link>
-          </li>
+          <Link to={`/productDetails/${product.id}`}>
+            <li key={product.id}>{product.name}</li>
+            <li>${product.price}</li>
+          </Link>
         ))}
       </ul>
     </div>

@@ -37,7 +37,7 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         // GET api/products/5
-        [HttpGet("{productId}"), Authorize]
+        [HttpGet("{productId}")]
         public IActionResult GetProductById(int? productId)
         {
             if (productId == null)
@@ -85,7 +85,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 data.Name = product.Name;
                 data.Description = product.Description;
                 data.Price = product.Price;
-                data.Quantity = product.Quantity;
+                data.StockQuantity = product.StockQuantity;
                 _context.SaveChanges();
             }
             return StatusCode(200, product);

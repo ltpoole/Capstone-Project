@@ -142,7 +142,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -301,13 +301,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d70fbf11-7466-489d-9526-355bdd2efaea",
+                            Id = "ccd95342-32c2-4ceb-951c-289b0a4d7039",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "661ce4d8-a28f-4bdb-a2be-5e841b6e05ab",
+                            Id = "02f3cc38-32a9-4a41-b29b-6ff4bc84d902",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

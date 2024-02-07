@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrateDatabase : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,6 +62,21 @@ namespace FullStackAuth_WebAPI.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(type: "longtext", nullable: true),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -69,8 +84,8 @@ namespace FullStackAuth_WebAPI.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false),
                     Description = table.Column<string>(type: "longtext", nullable: false),
-                    Price = table.Column<float>(type: "float", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -263,6 +278,7 @@ namespace FullStackAuth_WebAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<string>(type: "longtext", nullable: false),
                     Text = table.Column<string>(type: "longtext", nullable: false),
                     Rating = table.Column<double>(type: "double", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
@@ -278,13 +294,34 @@ namespace FullStackAuth_WebAPI.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "ShoppingCartItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<string>(type: "longtext", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCartItems_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "96cb0036-6a5c-4028-982e-373e664b8de1", null, "User", "USER" },
-                    { "de4775a9-8c53-4fc6-8525-ed2335f220a2", null, "Admin", "ADMIN" }
+                    { "02f3cc38-32a9-4a41-b29b-6ff4bc84d902", null, "Admin", "ADMIN" },
+                    { "ccd95342-32c2-4ceb-951c-289b0a4d7039", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -343,6 +380,11 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "IX_Reviews_UserId",
                 table: "Reviews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_UserId",
+                table: "ShoppingCartItems",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -370,6 +412,9 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -377,6 +422,9 @@ namespace FullStackAuth_WebAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCartItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

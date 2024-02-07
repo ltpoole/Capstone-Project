@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const ReviewForm = ({ productId }) => {
+const ReviewForm = ({ id }) => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
 
@@ -16,7 +16,7 @@ const ReviewForm = ({ productId }) => {
     e.preventDefault();
 
     try {
-      await axios.post(`https://localhost:5001/api/${productId}reviews`, {
+      await axios.post(`https://localhost:5001/api/${id}reviews`, {
         text,
         rating,
       });

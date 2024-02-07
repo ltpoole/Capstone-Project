@@ -32,6 +32,7 @@ namespace FullStackAuth_WebAPI.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
+
         }
     }
 }

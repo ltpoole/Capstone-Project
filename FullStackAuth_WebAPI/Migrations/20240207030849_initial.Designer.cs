@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240120043109_ChangedPriceFromFloatToDecimal")]
-    partial class ChangedPriceFromFloatToDecimal
+    [Migration("20240207030849_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,23 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -128,7 +145,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -287,13 +304,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3a651dc9-65ed-4e7e-9614-957556a15833",
+                            Id = "ccd95342-32c2-4ceb-951c-289b0a4d7039",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0c045ba3-f840-40ae-91c8-41e6fda63a06",
+                            Id = "02f3cc38-32a9-4a41-b29b-6ff4bc84d902",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

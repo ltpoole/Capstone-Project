@@ -13,6 +13,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import InventoryItem from "./components/InventoryItem/InventoryItem";
+import InventoryList from "./components/InventoryList/InventoryList";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
