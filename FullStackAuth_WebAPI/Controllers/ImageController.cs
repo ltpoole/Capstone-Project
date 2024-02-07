@@ -57,8 +57,7 @@ namespace FullStackAuth_WebAPI.Controllers
         {
             // Create a new image name by taking the first 10 characters of the original file name (without the extension),
             // replacing spaces with dashes, and appending a timestamp. Then append the original extension to this name.
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName)
-                .Take(10).ToArray()).Replace(' ', '-');
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
 
             // Combine the root path of the project, the Images folder, and the image name to get the image path.

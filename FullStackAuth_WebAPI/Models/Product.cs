@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -16,6 +17,8 @@ namespace FullStackAuth_WebAPI.Models
         public decimal Price { get; set; }
         [Required]
         public int StockQuantity { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
 
     }

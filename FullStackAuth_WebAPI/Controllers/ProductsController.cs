@@ -55,7 +55,7 @@ namespace FullStackAuth_WebAPI.Controllers
 
         // POST api/products
         [HttpPost]
-        public IActionResult PostProduct([FromBody] Product product)
+        public IActionResult PostProduct([FromForm] Product product)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace FullStackAuth_WebAPI.Controllers
 
         // PUT api/products/5
         [HttpPut("{productId}")]
-        public IActionResult EditProduct(int productId, [FromBody] Product product)
+        public IActionResult EditProduct(int productId, [FromForm] Product product)
         {
             var data = _context.Products.FirstOrDefault(p => p.Id == productId);
 
@@ -86,6 +86,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 data.Description = product.Description;
                 data.Price = product.Price;
                 data.StockQuantity = product.StockQuantity;
+                data.ImageFile = product.ImageFile;
                 _context.SaveChanges();
             }
             return StatusCode(200, product);
