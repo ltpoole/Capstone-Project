@@ -5,7 +5,8 @@ const InventoryItem = ({ product }) => {
     <li>
       <div>Product Name: {product.name}</div>
       <div>Price: ${product.price}</div>
-      <div>Quantity: {product.quantity}</div>
+      <div>Quantity: {product.stockQuantity}</div>
+      <div>Image: {product.imageFile}</div>
     </li>
   );
 };
