@@ -1,0 +1,8 @@
+YT api key = AIzaSyCW9otJvPp_zbiubuRLTCh3hlngqPMu2DI
+
+channel id: UCj3uS1EabcZU7MAWKC3y3Nw
+
+uploads ID: UUj3uS1EabcZU7MAWKC3y3Nw
+
+url: https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=12&
+playlistId=UUj3uS1EabcZU7MAWKC3y3Nw&key=AIzaSyCW9otJvPp_zbiubuRLTCh3hlngqPMu2DI
