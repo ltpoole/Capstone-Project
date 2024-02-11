@@ -16,7 +16,7 @@ const ReviewForm = ({ id }) => {
     e.preventDefault();
 
     try {
-      await axios.post(`https://localhost:5001/api/${id}reviews`, {
+      await axios.post(`https://localhost:5001/api/reviews/`, {
         text,
         rating,
       });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ImageList from "./ImageList";
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -8,6 +9,7 @@ const ProductPage = () => {
   const fetchProducts = async () => {
     try {
       let response = await axios.get("https://localhost:5001/api/products");
+      console.log(response);
       setProducts(response.data);
     } catch (error) {
       console.log(error.response.data);
@@ -21,8 +23,9 @@ const ProductPage = () => {
   return (
     <div>
       <h2 style={{ color: "orangered" }}>Charity's Products</h2>
+      <ImageList />
       <ul>
-        {products.map((product) => (
+        {products?.map((product) => (
           <Link to={`/productDetails/${product.id}`}>
             <li key={product.id}>{product.imageFile}</li>
             <li>{product.name}</li>

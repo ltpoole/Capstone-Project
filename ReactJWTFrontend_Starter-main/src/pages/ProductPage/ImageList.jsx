@@ -21,9 +21,9 @@ export default function ImageList() {
   return (
     <div>
       {/* Render each image in the list */}
-      {images.map((image) => (
+      {images?.map((image) => (
         <div>
-          <img src={image.imageSrc} alt={image.title} width="250" />
+          <img src={image.imageFile} alt={image.title} width="250" />
           <div>
             <h2>{image.title}</h2>
             <p>{image.description}</p>
