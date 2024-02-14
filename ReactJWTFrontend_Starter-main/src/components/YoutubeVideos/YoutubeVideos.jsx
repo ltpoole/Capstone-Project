@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./YoutubeVideos.css";
 
 const YoutubeVideos = () => {
   const [videos, setVideos] = useState([]);
@@ -21,15 +22,21 @@ const YoutubeVideos = () => {
 
   return (
     <div>
-      <h2>Checkout My Videos!</h2>
-      <div className="videos-container">
+      <h1>Checkout My Videos!</h1>
+      <div className="flex-container">
         {videos.map((video) => (
-          <div key={video.id}>
-            <img
-              src={video.snippet.thumbnails.medium.url}
-              alt={video.snippet.title}
-            />
-            <p>{video.snippet.title}</p>
+          <div className="yt-videos" key={video.id}>
+            <a
+              href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={video.snippet.thumbnails.medium.url}
+                alt={video.snippet.title}
+              />
+              <p>{video.snippet.title}</p>
+            </a>
           </div>
         ))}
       </div>

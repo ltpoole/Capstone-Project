@@ -1,0 +1,18 @@
+.table-container {
+  border-collapse: collapse;
+  width: 100%;
+
+  td,
+  th {
+    border: 2px solid;
+    padding: 8px;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: orangered;
+    color: black;
+  }
+}

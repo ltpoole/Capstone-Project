@@ -10,29 +10,29 @@ const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const [productDetails, setProductDetails] = useState([]);
 
-  const fetchProduct = async () => {
-    try {
-      let response = await axios.get(
-        `https://localhost:5001/api/products/${id}`
-      );
-      setProduct(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getProductDetails = async () => {
-    try {
-      let response = await axios.get(
-        `https://localhost:5001/api/productDetails/${id}`
-      );
-      console.log(response);
-      setProductDetails(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        let response = await axios.get(
+          `https://localhost:5001/api/products/${id}`
+        );
+        setProduct(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const getProductDetails = async () => {
+      try {
+        let response = await axios.get(
+          `https://localhost:5001/api/productDetails/${id}`
+        );
+        console.log(response.data);
+        setProductDetails(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchProduct();
     getProductDetails();
   }, [id]);

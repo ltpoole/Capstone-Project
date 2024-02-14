@@ -5,29 +5,25 @@ export default function ImageList() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(`https://localhost:5001/api/image/`);
+        console.log(response.data);
+        setImages();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchImages();
   }, []);
-
-  const fetchImages = async () => {
-    try {
-      const response = await axios.get(`https://localhost:5001/api/image/`);
-      console.log(response.data);
-      setImages();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div>
       {/* Render each image in the list */}
       {images?.map((image) => (
-        <div>
-          <img src={image.imageFile} alt={image.title} width="250" />
-          <div>
-            <h2>{image.title}</h2>
-            <p>{image.description}</p>
-          </div>
+        <div key={image.id}>
+          <img src={image.imageSrc} alt={image.title} width="250" />
         </div>
       ))}
     </div>

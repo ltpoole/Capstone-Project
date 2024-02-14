@@ -21,6 +21,9 @@ const Navbar = () => {
           <Link to="/products">Shop</Link>
         </li>
         <li>
+          <CartIcon />
+        </li>
+        <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
@@ -28,7 +31,6 @@ const Navbar = () => {
           )}
         </li>
       </ul>
-      <CartIcon />
     </div>
   );
 };

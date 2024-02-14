@@ -1,0 +1,14 @@
+.form {
+  border: 2px solid;
+  background-color: orangered;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  padding: 1rem;
+  width: 25%;
+}
+
+h2 {
+  align-items: center;
+}
